@@ -1,17 +1,18 @@
-
-import './App.css';
-import Singnup from './components/Signup';
-import Login from './components/Login'
-import {Routes,Route} from 'react-router-dom'
+import React, { useState } from "react";
+import "./App.css";
+import Profile from "./Components/Profile";
+import SignIn from "./Components/Signin";
 
 function App() {
-  return (
-    <div>
-      <Routes>
-        <Route path='/' element={<Singnup/>}/>
-        <Route path='/login' element={<Login/>}/>
+  const [userDetails, setUserDetails] = useState({});
 
-      </Routes>
+  return (
+    <div className="App">
+      {localStorage.getItem('user Data') ? (
+        <Profile userDetails={userDetails} setUserDetails={setUserDetails} />
+      ) : (
+        <SignIn setUserDetails={setUserDetails} />
+      )}
     </div>
   );
 }
